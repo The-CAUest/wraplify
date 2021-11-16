@@ -1,8 +1,7 @@
 const fs = require("fs");
-const { Module } = require("module");
 const path = require("path");
 
-Module.exports = (filePath) => {
+module.exports = (filePath) => {
   const fullPath = path.join(process.cwd(), filePath);
 
   fs.access(fullPath, fs.constants.F_OK, (err) => {
