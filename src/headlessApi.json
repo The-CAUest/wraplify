@@ -1,0 +1,1 @@
+{"version":1,"serviceConfiguration":{"serviceName":"AppSync","apiName":"wraplifydevApi","transformSchema":"type Todo @model {\r\n  id: ID!\r\n  name: String!\r\n  description: String\r\n}","defaultAuthType":{"mode":"AMAZON_COGNITO_USER_POOLS"},"additionalAuthTypes":[{"mode":"API_KEY"}]}}

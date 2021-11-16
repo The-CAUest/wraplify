@@ -1,0 +1,1 @@
+{"version":1,"resourceName":"WraplifyDevAuth","serviceConfiguration":{"serviceName":"Cognito","userPoolConfiguration":{"signinMethod":"USERNAME","requiredSignupAttributes":["EMAIL","NAME","PHONE_NUMBER"]},"includeIdentityPool":true}}
