@@ -1,0 +1,19 @@
+{
+  "name": "wraplify",
+  "version": "1.0.0",
+  "description": "2021-2 캡스톤 디자인",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-CAUest/wraplify.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/The-CAUest/wraplify/issues"
+  },
+  "homepage": "https://github.com/The-CAUest/wraplify#readme"
+}
