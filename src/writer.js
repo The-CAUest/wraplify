@@ -11,6 +11,8 @@ exports.writeHeadlessApi = () => {
 };
 
 exports.writeHeadlessAuth = () => {
+  console.log("current3", __dirname);
+
   const projectInfo = getProjectInfo();
 
   const headlessAuthPath = path.join(__dirname, "./headlessAuth.json");

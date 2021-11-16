@@ -17,8 +17,8 @@ const getYamlData = (filePath) => {
 };
 
 exports.getProjectInfo = () => {
-  const projectProviderInfo = getJsonData("./amplify/team-provider-info.json");
-  const projectInfo = getJsonData("./amplify/.config/project-config.json");
+  const projectProviderInfo = getJsonData("amplify/team-provider-info.json");
+  const projectInfo = getJsonData("amplify/.config/project-config.json");
 
   return Object.keys(projectProviderInfo).map((key) => ({
     env: key,
