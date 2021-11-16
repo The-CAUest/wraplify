@@ -19,7 +19,9 @@
     "url": "https://github.com/The-CAUest/wraplify/issues"
   },
   "homepage": "https://github.com/The-CAUest/wraplify#readme",
-  "files": [],
+  "files": [
+    "src"
+  ],
   "dependencies": {
     "commander": "^8.3.0",
     "js-yaml": "^4.1.0",
