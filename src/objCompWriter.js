@@ -3,7 +3,7 @@ const path = require("path");
 
 const schema = require("./schema");
 
-const classesPath = path.join(__dirname, `./src/classes`);
+const classesPath = path.join(process.cwd(), `./src/classes`);
 
 try {
   fs.mkdirSync(classesPath, { recursive: true });

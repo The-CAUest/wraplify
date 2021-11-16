@@ -9,15 +9,11 @@ const deleteFile = require("./remover");
 exports.init = () => {
   const stdinCommand = process.platform === "win32" ? "type" : "cat";
 
-  console.log("current1", __dirname);
-
   console.log("=================== start Init ===================");
   shell.exec(
     `amplify init --frontend '{"frontend":"javascript","framework":"react"}' --yes`
   );
   console.log("=================== end Init ===================\n");
-
-  console.log("current2", __dirname);
 
   console.log("=================== start Auth ===================");
   writeHeadlessAuth();
