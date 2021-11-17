@@ -1,14 +1,13 @@
 const fs = require("fs");
 const path = require("path");
 
-const schema = require("./schema");
-
 const classesPath = path.join(process.cwd(), `./src/classes`);
 
 try {
   fs.mkdirSync(classesPath, { recursive: true });
 } catch (e) {}
 
+const schema = require(path.join(process.cwd(), "./schema.js"));
 const dbObjects = Object.keys(schema);
 
 console.log(dbObjects);
@@ -54,6 +53,5 @@ class ${objName} {
 export default ${objName};`;
 
   const objPath = path.join(classesPath, `${objName}.js`);
-  console.log(objPath);
   fs.writeFileSync(objPath, classContents);
 });
