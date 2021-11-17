@@ -14,7 +14,7 @@ exports.writeHeadlessAuth = () => {
   const projectInfo = getProjectInfo();
 
   const headlessAuthPath = path.join(process.cwd(), "./headlessAuth.json");
-  const headlessAuthData = `{"version":1,"resourceName":"${projectInfo.projectName}Auth","serviceConfiguration":{"serviceName":"Cognito","userPoolConfiguration":{"signinMethod":"USERNAME","requiredSignupAttributes":["EMAIL","NAME","PHONE_NUMBER"]},"includeIdentityPool":true}}`;
+  const headlessAuthData = `{"version":1,"resourceName":"${projectInfo.projectName}Auth","serviceConfiguration":{"serviceName":"Cognito","userPoolConfiguration":{"signinMethod":"USERNAME","requiredSignupAttributes":["EMAIL","NAME","PHONE_NUMBER"],"passwordRecovery":{"deliveryMethod": "EMAIL","emailMessage": "인증코드는 {####} 입니다.","emailSubject": "인증코드"}},"includeIdentityPool":true}}`;
   fs.writeFileSync(headlessAuthPath, headlessAuthData);
 };
 
