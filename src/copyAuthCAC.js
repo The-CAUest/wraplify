@@ -2,7 +2,6 @@ const fs = require("fs");
 
 exports.copyAuthCAC = () => {
   // copy authentication class and components
-  const stdinCommand = process.platform === "win32" ? "type" : "cat";
 
   console.log("=================== Start Copy Auth Class ===================");
 
