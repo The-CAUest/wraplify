@@ -1,9 +1,8 @@
 const fs = require("fs");
-const { Module } = require("module");
 const path = require("path");
 
-Module.exports = (filePath) => {
-  const fullPath = path.join(__dirname, filePath);
+module.exports = (filePath) => {
+  const fullPath = path.join(process.cwd(), filePath);
 
   fs.access(fullPath, fs.constants.F_OK, (err) => {
     if (err) return console.log("삭제할 수 없는 파일입니다");
