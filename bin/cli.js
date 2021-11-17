@@ -9,6 +9,8 @@ if (command === "init") {
   console.log("초기화를 시작합니다...");
   init();
   copyAuthCAC();
+} else if (command === "copyAuthCAC") {
+  copyAuthCAC();
 }
 
 console.log(process.argv[2]);
