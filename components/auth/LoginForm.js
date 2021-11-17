@@ -23,8 +23,11 @@ const LoginForm = ({ onLogin, setAuthState, setAuthData }) => {
 
     try {
       await WraplifyAuth.login(username, password);
-      console.log(onLogin);
-      onLogin();
+      if (onLogin) {
+        onLogin();
+      } else {
+        window.location.href = "/";
+      }
     } catch (error) {
       if (error.name === "NotAuthorizedException") {
         alert("아이디 혹은 비밀번호가 잘못되었습니다.");
