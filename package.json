@@ -27,6 +27,8 @@
   ],
   "dependencies": {
     "js-yaml": "^4.1.0",
-    "shelljs": "^0.8.4"
+    "puppeteer": "^11.0.0",
+    "shelljs": "^0.8.4",
+    "wait-console-input": "^0.1.7"
   }
 }
