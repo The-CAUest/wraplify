@@ -12,11 +12,7 @@ exports.copyAuthCAC = () => {
     "src/classes/WraplifyAuth.js"
   );
 
-  fs.copyFileSync(
-    authClassPath,
-    authClassTargetPath,
-    fs.constants.COPYFILE_FICLONE_FORCE
-  );
+  fs.copyFileSync(authClassPath, authClassTargetPath);
 
   console.log("=================== End Copy Auth Class ===================\n");
 
@@ -25,11 +21,7 @@ exports.copyAuthCAC = () => {
   const authCommonPath = path.join(__dirname, "../common/auth.js");
   const authCommonTargetPath = path.join(process.cwd(), "src/common/auth.js");
 
-  fs.copyFileSync(
-    authCommonPath,
-    authCommonTargetPath,
-    fs.constants.COPYFILE_FICLONE_FORCE
-  );
+  fs.copyFileSync(authCommonPath, authCommonTargetPath);
 
   console.log("=================== Ent Copy Auth Common ===================\n");
 
@@ -55,11 +47,7 @@ exports.copyAuthCAC = () => {
       `src/components/auth/${fileName}`
     );
 
-    fs.copyFileSync(
-      componentPath,
-      componentTargetPath,
-      fs.constants.COPYFILE_FICLONE_FORCE
-    );
+    fs.copyFileSync(componentPath, componentTargetPath);
   });
 
   console.log(
