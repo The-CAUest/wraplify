@@ -26,7 +26,6 @@
     "components"
   ],
   "dependencies": {
-    "commander": "^8.3.0",
     "js-yaml": "^4.1.0",
     "shelljs": "^0.8.4"
   }
