@@ -20,7 +20,10 @@
   },
   "homepage": "https://github.com/The-CAUest/wraplify#readme",
   "files": [
-    "src"
+    "src",
+    "classes",
+    "common",
+    "components"
   ],
   "dependencies": {
     "commander": "^8.3.0",
