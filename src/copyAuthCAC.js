@@ -35,7 +35,7 @@ exports.copyAuthCAC = () => {
     "=================== Start Copy Auth Components ==================="
   );
   try {
-    fs.mkdirSync(path.join(process.cwd(), `src/components`), {
+    fs.mkdirSync(path.join(process.cwd(), `src/components/auth`), {
       recursive: true,
     });
   } catch (e) {}
