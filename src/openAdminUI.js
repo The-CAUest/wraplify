@@ -3,17 +3,23 @@ const puppeteer = require("puppeteer");
 const { getProjectInfo } = require("./loader");
 const { sleep } = require("./common");
 
-const projectInfo = getProjectInfo();
-console.log(projectInfo);
-
-const projectAdminUIConsole = `https://${projectInfo["amplifyRegion"]}.console.aws.amazon.com/amplify/home?region=${projectInfo["amplifyRegion"]}#/${projectInfo["AmplifyAppId"]}/settings/admin-ui-management`;
-const projectConsole = `https://${projectInfo["amplifyRegion"]}.console.aws.amazon.com/amplify/home?region=${projectInfo["amplifyRegion"]}#/${projectInfo["AmplifyAppId"]}`;
-const projectAdminUIDataPage = `https://${projectInfo["amplifyRegion"]}.admin.amplifyapp.com/admin/${projectInfo["AmplifyAppId"]}/dev/datastore`;
+const projectAdminUIConsole = () => {
+  const projectInfo = getProjectInfo();
+  return `https://${projectInfo["amplifyRegion"]}.console.aws.amazon.com/amplify/home?region=${projectInfo["amplifyRegion"]}#/${projectInfo["AmplifyAppId"]}/settings/admin-ui-management`;
+};
+const projectConsole = () => {
+  const projectInfo = getProjectInfo();
+  return `https://${projectInfo["amplifyRegion"]}.console.aws.amazon.com/amplify/home?region=${projectInfo["amplifyRegion"]}#/${projectInfo["AmplifyAppId"]}`;
+};
+const projectAdminUIDataPage = () => {
+  const projectInfo = getProjectInfo();
+  return `https://${projectInfo["amplifyRegion"]}.admin.amplifyapp.com/admin/${projectInfo["AmplifyAppId"]}/dev/datastore`;
+};
 
 const activateAdminUI = async (page) => {
   console.log("Check Admin Ui is activated");
 
-  await page.goto(projectAdminUIConsole, { waitUntil: "networkidle2" });
+  await page.goto(projectAdminUIConsole(), { waitUntil: "networkidle2" });
 
   await page.waitForNavigation({ waitUntil: "networkidle2" });
 
@@ -47,7 +53,7 @@ const activateAdminUI = async (page) => {
 const openAdminUIPage = async (browser, page) => {
   console.log("Open Admin UI Page");
 
-  await page.goto(projectConsole, { waitUntil: "networkidle2" });
+  await page.goto(projectConsole(), { waitUntil: "networkidle2" });
 
   await page.waitForSelector(".amplify-backend__placeholder button", {
     waitUntil: "networkidle2",
@@ -79,7 +85,7 @@ const openAdminUIPage = async (browser, page) => {
 const openDataEditPage = async (page) => {
   console.log("Open Data Edit Page");
 
-  await page.goto(projectAdminUIDataPage, { waitUntil: "networkidle2" });
+  await page.goto(projectAdminUIDataPage(), { waitUntil: "networkidle2" });
 
   await page.waitForNavigation({ waitUntil: "networkidle2" });
 
@@ -102,7 +108,7 @@ exports.openAdminUI = async () => {
     width: 1920,
     height: 1080,
   });
-  await page.goto(projectAdminUIConsole);
+  await page.goto(projectAdminUIConsole());
 
   inputReader.readLine("Press a RETURN(ENTER) After Login!");
 
