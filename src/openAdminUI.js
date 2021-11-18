@@ -7,13 +7,10 @@ const projectInfo = getProjectInfo();
 console.log(projectInfo);
 
 const projectAdminUIConsole = `https://${projectInfo["amplifyRegion"]}.console.aws.amazon.com/amplify/home?region=${projectInfo["amplifyRegion"]}#/${projectInfo["AmplifyAppId"]}/settings/admin-ui-management`;
+const projectConsole = `https://${projectInfo["amplifyRegion"]}.console.aws.amazon.com/amplify/home?region=${projectInfo["amplifyRegion"]}#/${projectInfo["AmplifyAppId"]}`;
 
-(async () => {
-  const browser = await puppeteer.launch({ headless: false });
-  const page = await browser.newPage();
-  await page.goto(projectAdminUIConsole);
-
-  inputReader.readLine("Press a RETURN(ENTER) After Login!");
+const activateAdminUI = async (page) => {
+  console.log("Check Admin Ui is activated");
 
   await page.goto(projectAdminUIConsole, { waitUntil: "networkidle2" });
 
@@ -23,7 +20,7 @@ const projectAdminUIConsole = `https://${projectInfo["amplifyRegion"]}.console.a
   let adminUIToggleValue = await page.evaluate((e) => e.checked, adminUIToggle);
 
   if (!adminUIToggleValue) {
-    console.log("Enable Admin UI... Please Wait");
+    console.log(" > Enable Admin UI...");
 
     await adminUIToggle.click();
 
@@ -41,8 +38,49 @@ const projectAdminUIConsole = `https://${projectInfo["amplifyRegion"]}.console.a
       }
     }
 
-    console.log("Enable Admin UI Done!");
+    console.log(" > Enable Admin UI - Done");
   }
+  console.log("Check Admin Ui is activated - Done");
+};
+
+const openAdminUIPage = async (browser, page) => {
+  console.log("Open Admin UI Page");
+
+  await page.goto(projectConsole, { waitUntil: "networkidle2" });
+
+  await page.waitForSelector(".amplify-backend__placeholder button", {
+    waitUntil: "networkidle2",
+  });
+
+  const openAdminUIBtn = await page.$(".amplify-backend__placeholder button");
+
+  await openAdminUIBtn.click();
+
+  const target = await new Promise((resolve) =>
+    browser.once("targetcreated", resolve)
+  );
+
+  const newPage = await target.page();
+
+  await newPage.waitForNavigation({ waitUntil: "networkidle2" });
+
+  await newPage.bringToFront();
+
+  console.log("Goto Admin UI Page - Done");
+
+  return newPage;
+};
+
+(async () => {
+  const browser = await puppeteer.launch({ headless: false });
+  let page = await browser.newPage();
+  await page.goto(projectAdminUIConsole);
+
+  inputReader.readLine("Press a RETURN(ENTER) After Login!");
+
+  // await activateAdminUI(page);
+
+  page = await openAdminUIPage(browser, page);
 
   inputReader.readLine("Press a RETURN(ENTER) To Exit!");
 
