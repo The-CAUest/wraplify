@@ -11,6 +11,8 @@ if (command === "init") {
   copyAuthCAC();
 } else if (command === "copyAuthCAC") {
   copyAuthCAC();
+} else if (command === "build") {
+  // buildDBComponents();
 }
 
 console.log(process.argv[2]);
