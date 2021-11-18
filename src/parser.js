@@ -2,6 +2,12 @@ const fs = require("fs");
 const path = require("path");
 const { getProjectInfo } = require("./loader");
 const projectInfo = getProjectInfo();
+
+const filePath = path.join(
+  process.cwd(),
+  `./amplify/backend/api/${projectInfo.projectName}Api/schema.graphql`
+);
+
 // import * from './amplify/backend/api/test1/schema.graphql'
 
 const schemaParser = (tokens) => {
@@ -42,11 +48,6 @@ const removeSpace = (arr) => {
   }
   return arr;
 };
-
-const filePath = path.join(
-  process.cwd(),
-  `./amplify/backend/api/${projectInfo.projectName}Api/schema.graphql`
-);
 
 let tokens = removeSpace(fs.readFileSync(filePath, "utf-8").split(/\n|\r/));
 // console.log(tokens)
