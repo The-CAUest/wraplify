@@ -8,6 +8,7 @@ console.log(projectInfo);
 
 const projectAdminUIConsole = `https://${projectInfo["amplifyRegion"]}.console.aws.amazon.com/amplify/home?region=${projectInfo["amplifyRegion"]}#/${projectInfo["AmplifyAppId"]}/settings/admin-ui-management`;
 const projectConsole = `https://${projectInfo["amplifyRegion"]}.console.aws.amazon.com/amplify/home?region=${projectInfo["amplifyRegion"]}#/${projectInfo["AmplifyAppId"]}`;
+const projectAdminUIDataPage = `https://${projectInfo["amplifyRegion"]}.admin.amplifyapp.com/admin/${projectInfo["AmplifyAppId"]}/dev/datastore`;
 
 const activateAdminUI = async (page) => {
   console.log("Check Admin Ui is activated");
@@ -61,6 +62,10 @@ const openAdminUIPage = async (browser, page) => {
   );
 
   const newPage = await target.page();
+  newPage.setViewport({
+    width: 1920,
+    height: 1080,
+  });
 
   await newPage.waitForNavigation({ waitUntil: "networkidle2" });
 
@@ -71,18 +76,41 @@ const openAdminUIPage = async (browser, page) => {
   return newPage;
 };
 
-(async () => {
-  const browser = await puppeteer.launch({ headless: false });
+const openDataEditPage = async (page) => {
+  console.log("Open Data Edit Page");
+
+  await page.goto(projectAdminUIDataPage, { waitUntil: "networkidle2" });
+
+  await page.waitForNavigation({ waitUntil: "networkidle2" });
+
+  console.log(
+    " > ( Enable DataStore and deploy ) > Edit Data Model > Save And Deploy"
+  );
+
+  inputReader.readLine(
+    "Press a RETURN(ENTER) after Save And Deploy Completed."
+  );
+};
+
+module.exports = async () => {
+  const browser = await puppeteer.launch({
+    headless: false,
+    args: ["--window-size=1920,1080"],
+  });
   let page = await browser.newPage();
+  page.setViewport({
+    width: 1920,
+    height: 1080,
+  });
   await page.goto(projectAdminUIConsole);
 
   inputReader.readLine("Press a RETURN(ENTER) After Login!");
 
-  // await activateAdminUI(page);
+  await activateAdminUI(page);
 
   page = await openAdminUIPage(browser, page);
 
-  inputReader.readLine("Press a RETURN(ENTER) To Exit!");
+  await openDataEditPage(page);
 
   await browser.close();
-})();
+};
