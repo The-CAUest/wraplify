@@ -6,7 +6,7 @@ inputReader.readLine("Press a RETURN(ENTER) to continue");
 console.log(12312412);
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   await page.goto("https://www.naver.com");
   await page.screenshot({ path: "example.png" });
