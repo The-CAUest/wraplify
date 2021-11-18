@@ -2,7 +2,7 @@
 
 const { init } = require("../src/init");
 const { copyAuthCAC } = require("../src/copyAuthCAC");
-const openAdminUI = require("../src/openAdminUI");
+const { openAdminUI } = require("../src/openAdminUI");
 
 const command = process.argv[2];
 
