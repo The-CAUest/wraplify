@@ -1,15 +1,18 @@
 const inputReader = require("wait-console-input");
 const puppeteer = require("puppeteer");
+const { getProjectInfo } = require("./loader");
 
-console.log(123);
-inputReader.readLine("Press a RETURN(ENTER) to continue");
-console.log(12312412);
+inputReader.readLine("Press a RETURN(ENTER) After Login!");
+const projectInfo = getProjectInfo();
+console.log(projectInfo);
 
 (async () => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   await page.goto("https://www.naver.com");
-  await page.screenshot({ path: "example.png" });
+  const loginBtn = await page.$(".link_login");
+  await loginBtn.click();
+  inputReader.readLine("Press a RETURN(ENTER) to continue");
 
   await browser.close();
 })();
