@@ -53,38 +53,32 @@ const activateAdminUI = async (page) => {
 const openAdminUIPage = async (browser, page) => {
   console.log("Open Admin UI Page");
 
-  await sleep(2500);
-
-  await page.goto(projectConsole(), { waitUntil: "networkidle2" });
-  await page.waitForSelector(".amplify-backend__placeholder button", {
-    waitUntil: "networkidle2",
-  });
-
-  await sleep(2500);
-
   await page.goto(projectConsole(), { waitUntil: "networkidle2" });
 
   await page.waitForSelector(".amplify-backend__placeholder button", {
     waitUntil: "networkidle2",
   });
 
-  const openAdminUIBtn = await page.$(".amplify-backend__placeholder button");
+  const cnt = 2;
+  for (let i = 0; i < cnt; i++) {
+    const openAdminUIBtn = await page.$(".amplify-backend__placeholder button");
 
-  await openAdminUIBtn.click();
+    await openAdminUIBtn.click();
 
-  const target = await new Promise((resolve) =>
-    browser.once("targetcreated", resolve)
-  );
+    const target = await new Promise((resolve) =>
+      browser.once("targetcreated", resolve)
+    );
 
-  const newPage = await target.page();
-  newPage.setViewport({
-    width: 1920,
-    height: 1080,
-  });
+    const newPage = await target.page();
 
-  await newPage.waitForNavigation({ waitUntil: "networkidle2" });
+    await newPage.waitForNavigation({ waitUntil: "networkidle2" });
 
-  await newPage.bringToFront();
+    await newPage.bringToFront();
+
+    if (i === cnt - 1) break;
+
+    await newPage.close();
+  }
 
   console.log("Goto Admin UI Page - Done");
 
