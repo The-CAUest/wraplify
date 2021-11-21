@@ -60,6 +60,7 @@ const openAdminUIPage = async (browser, page) => {
   });
 
   const cnt = 2;
+  let newPage;
   for (let i = 0; i < cnt; i++) {
     const openAdminUIBtn = await page.$(".amplify-backend__placeholder button");
 
@@ -69,9 +70,11 @@ const openAdminUIPage = async (browser, page) => {
       browser.once("targetcreated", resolve)
     );
 
-    const newPage = await target.page();
+    newPage = await target.page();
 
     await newPage.waitForNavigation({ waitUntil: "networkidle2" });
+
+    sleep(3000);
 
     await newPage.bringToFront();
 
