@@ -3,6 +3,7 @@ const path = require("path");
 const { getProjectInfo } = require("./loader");
 
 // import * from './amplify/backend/api/test1/schema.graphql'
+const path = require("path");
 
 const schemaParser = (tokens) => {
   let output = {};
