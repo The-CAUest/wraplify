@@ -20,12 +20,13 @@ exports.getProjectInfo = () => {
   const projectProviderInfo = getJsonData("amplify/team-provider-info.json");
   const projectInfo = getJsonData("amplify/.config/project-config.json");
 
-  return Object.keys(projectProviderInfo).map((key) => ({
+  const infoArray = Object.keys(projectProviderInfo).map((key) => ({
     env: key,
     amplifyRegion: projectProviderInfo[key].awscloudformation.Region,
     AmplifyAppId: projectProviderInfo[key].awscloudformation.AmplifyAppId,
     projectName: projectInfo.projectName,
-  }))[0];
+  }));
+  return infoArray.find((info) => info.env === "dev");
 };
 
 exports.getApiInfo = () => {
