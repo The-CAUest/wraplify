@@ -1,19 +1,19 @@
 const fs = require("fs");
 const path = require("path");
 
-const classesPath = path.join(process.cwd(), `./src/classes`);
+module.exports = () => {
+  const classesPath = path.join(process.cwd(), `./src/classes`);
 
-try {
-  fs.mkdirSync(classesPath, { recursive: true });
-} catch (e) {}
+  try {
+    fs.rmdirSync(classesPath, { recursive: true });
+    fs.mkdirSync(classesPath, { recursive: true });
+  } catch (e) {}
 
-const schema = require(path.join(process.cwd(), "./schema.js"));
-const dbObjects = Object.keys(schema);
+  const schema = require(path.join(process.cwd(), "./src/schema.js"));
+  const dbObjects = Object.keys(schema);
 
-console.log(dbObjects);
-
-dbObjects.forEach((objName) => {
-  const classContents = `import { API, graphqlOperation } from "aws-amplify";
+  dbObjects.forEach((objName) => {
+    const classContents = `import { API, graphqlOperation } from "aws-amplify";
 import { create${objName}, delete${objName}, update${objName} } from "../graphql/mutations";
 import { get${objName}, list${objName}s } from "../graphql/queries";
 
@@ -52,6 +52,7 @@ class ${objName} {
 
 export default ${objName};`;
 
-  const objPath = path.join(classesPath, `${objName}.js`);
-  fs.writeFileSync(objPath, classContents);
-});
+    const objPath = path.join(classesPath, `${objName}.js`);
+    fs.writeFileSync(objPath, classContents);
+  });
+};

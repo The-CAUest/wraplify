@@ -6,6 +6,7 @@ const parser = require("../src/parser");
 const buildDBComponents = require("../buildDBComponents/buildDBComponents");
 const openAdminUI = require("../src/openAdminUI");
 const pullAndCodegen = require("../src/pullAndCodegen");
+const writeObjClasses = require("../src/objClassWriter");
 
 const command = process.argv[2];
 
@@ -17,11 +18,13 @@ const command = process.argv[2];
     await openAdminUI();
     pullAndCodegen();
     parser();
+    writeObjClasses();
     buildDBComponents();
   } else if (command === "copyAuthCAC") {
     copyAuthCAC();
   } else if (command === "build") {
     parser();
+    writeObjClasses();
     buildDBComponents();
   } else if (command === "pull") {
     pullAndCodegen();
@@ -30,6 +33,7 @@ const command = process.argv[2];
   } else if (command === "rebuild") {
     pullAndCodegen();
     parser();
+    writeObjClasses();
     buildDBComponents();
   }
 })();
