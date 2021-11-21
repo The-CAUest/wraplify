@@ -22,14 +22,14 @@ const schemaParser = () => {
 const writeFile = (fileContext, name, functionName) => {
   const filePath = path.join(
     process.cwd(),
-    `components/crudl/${name}${functionName}.js`
+    `./src/components/crudl/${name}${functionName}.js`
   );
 
   fs.writeFileSync(filePath, fileContext, "utf-8");
 };
 
 module.exports = () => {
-  const filePath = path.join(process.cwd(), `./components/crudl`);
+  const filePath = path.join(process.cwd(), `./src/components/crudl`);
   if (filePath) {
     fs.rmdir(filePath, { recursive: true }, (err) => {
       if (err) {
