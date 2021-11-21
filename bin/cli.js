@@ -26,6 +26,10 @@ if (command === "init") {
   pullAndCodegen();
 } else if (command === "editmodel") {
   openAdminUI();
+} else if (command === "rebuild") {
+  pullAndCodegen();
+  parser();
+  buildDBComponents();
 }
 
 console.log(process.argv[2]);
