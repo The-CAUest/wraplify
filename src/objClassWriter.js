@@ -5,7 +5,6 @@ module.exports = () => {
   const classesPath = path.join(process.cwd(), `./src/classes`);
 
   try {
-    fs.rmdirSync(classesPath, { recursive: true });
     fs.mkdirSync(classesPath, { recursive: true });
   } catch (e) {}
 
