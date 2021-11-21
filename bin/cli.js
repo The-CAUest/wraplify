@@ -2,8 +2,8 @@
 
 const { init } = require("../src/init");
 const { copyAuthCAC } = require("../src/copyAuthCAC");
-const parser = require("./src/parser");
-const buildDBComponents = require("./buildDBComponents/buildDBComponents");
+const parser = require("../src/parser");
+const buildDBComponents = require("../buildDBComponents/buildDBComponents");
 const { openAdminUI } = require("../src/openAdminUI");
 
 const command = process.argv[2];
