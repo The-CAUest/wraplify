@@ -1,8 +1,0 @@
-type Note @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  name: String!
-  completed: Boolean
-  date: AWSDate
-  url: AWSURL
-  age: Int
-}
