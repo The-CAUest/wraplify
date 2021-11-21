@@ -20,10 +20,11 @@
   },
   "homepage": "https://github.com/The-CAUest/wraplify#readme",
   "files": [
-    "src",
+    "buildDBComponents",
     "classes",
     "common",
-    "components"
+    "components",
+    "src"
   ],
   "dependencies": {
     "js-yaml": "^4.1.0",
