@@ -98,7 +98,7 @@ const openDataEditPage = async (page) => {
   );
 };
 
-exports.openAdminUI = async () => {
+module.exports = async () => {
   const browser = await puppeteer.launch({
     headless: false,
     args: ["--window-size=1920,1080"],

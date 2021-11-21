@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-exports.copyAuthCAC = () => {
+module.exports = () => {
   // copy authentication class and components
 
   console.log("=================== Start Copy Auth Class ===================");

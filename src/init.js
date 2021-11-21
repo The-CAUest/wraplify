@@ -6,7 +6,7 @@ const {
 } = require("./writer");
 const deleteFile = require("./remover");
 
-exports.init = () => {
+module.exports = () => {
   const stdinCommand = process.platform === "win32" ? "type" : "cat";
 
   console.log("=================== start Init ===================");
