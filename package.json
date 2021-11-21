@@ -1,6 +1,6 @@
 {
   "name": "wraplify",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "2021-2 캡스톤 디자인",
   "bin": {
     "wraplify": "bin/cli.js"
