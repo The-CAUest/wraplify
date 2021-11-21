@@ -53,6 +53,13 @@ const activateAdminUI = async (page) => {
 const openAdminUIPage = async (browser, page) => {
   console.log("Open Admin UI Page");
 
+  await sleep(2500);
+
+  await page.goto(projectAdminUIConsole(), { waitUntil: "networkidle2" });
+  await page.waitForNavigation({ waitUntil: "networkidle2" });
+
+  await sleep(2500);
+
   await page.goto(projectConsole(), { waitUntil: "networkidle2" });
 
   await page.waitForSelector(".amplify-backend__placeholder button", {
