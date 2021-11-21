@@ -30,14 +30,8 @@ const writeFile = (fileContext, name, functionName) => {
 
 module.exports = () => {
   const filePath = path.join(process.cwd(), `./src/components/crudl`);
-  if (filePath) {
-    fs.rmdir(filePath, { recursive: true }, (err) => {
-      if (err) {
-        throw err;
-      }
-    });
-  }
   try {
+    fs.rmdirSync(filePath, { recursive: true });
     fs.mkdirSync(filePath, { recursive: true });
   } catch (e) {
     console.log("Cannot create folder ", e);
