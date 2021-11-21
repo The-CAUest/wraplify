@@ -55,8 +55,10 @@ const openAdminUIPage = async (browser, page) => {
 
   await sleep(2500);
 
-  await page.goto(projectAdminUIConsole(), { waitUntil: "networkidle2" });
-  await page.waitForNavigation({ waitUntil: "networkidle2" });
+  await page.goto(projectConsole(), { waitUntil: "networkidle2" });
+  await page.waitForSelector(".amplify-backend__placeholder button", {
+    waitUntil: "networkidle2",
+  });
 
   await sleep(2500);
 
