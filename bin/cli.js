@@ -9,27 +9,27 @@ const pullAndCodegen = require("../src/pullAndCodegen");
 
 const command = process.argv[2];
 
-if (command === "init") {
-  console.log("초기화를 시작합니다...");
-  init();
-  copyAuthCAC();
-  openAdminUI();
-  pullAndCodegen();
-  parser();
-  buildDBComponents();
-} else if (command === "copyAuthCAC") {
-  copyAuthCAC();
-} else if (command === "build") {
-  parser();
-  buildDBComponents();
-} else if (command === "pull") {
-  pullAndCodegen();
-} else if (command === "editmodel") {
-  openAdminUI();
-} else if (command === "rebuild") {
-  pullAndCodegen();
-  parser();
-  buildDBComponents();
-}
-
-console.log(process.argv[2]);
+(async () => {
+  if (command === "init") {
+    console.log("초기화를 시작합니다...");
+    init();
+    copyAuthCAC();
+    await openAdminUI();
+    pullAndCodegen();
+    parser();
+    buildDBComponents();
+  } else if (command === "copyAuthCAC") {
+    copyAuthCAC();
+  } else if (command === "build") {
+    parser();
+    buildDBComponents();
+  } else if (command === "pull") {
+    pullAndCodegen();
+  } else if (command === "editmodel") {
+    await openAdminUI();
+  } else if (command === "rebuild") {
+    pullAndCodegen();
+    parser();
+    buildDBComponents();
+  }
+})();
