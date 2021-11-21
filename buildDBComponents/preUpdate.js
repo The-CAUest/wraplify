@@ -1,15 +1,13 @@
-const path = require("path")
-const schemaPath = path.join(process.cwd(), "./src/schema.js");
-const schema = require(schemaPath)
+const path = require("path");
 
 const makeUpdateForm = (name, form) => {
-  const keys = Object.keys(form) // [name description]
-  let formItem = ``
-  let initialValues = ``
-  let realFormItem = ``
-  let dispatchItem = ``
-  let changeColumns = ``
-  for(let num=0; num<keys.length; num++) {
+  const keys = Object.keys(form); // [name description]
+  let formItem = ``;
+  let initialValues = ``;
+  let realFormItem = ``;
+  let dispatchItem = ``;
+  let changeColumns = ``;
+  for (let num = 0; num < keys.length; num++) {
     formItem += `
       <Form.Item
         label="${keys[num]}"
@@ -21,16 +19,16 @@ const makeUpdateForm = (name, form) => {
           name="${keys[num]}"
         />
       </Form.Item>
-    `
-    initialValues += `${keys[num]}: state.list["${keys[num]}"], `
-    changeColumns += `'${keys[num]}', `
-    realFormItem += `${keys[num]}: '', `
-    dispatchItem += `dispatch({ type: 'SET_INPUT', name: '${keys[num]}', value: data['${keys[num]}'] })`
-    dispatchItem += `\n\t\t\t\t`
+    `;
+    initialValues += `${keys[num]}: state.list["${keys[num]}"], `;
+    changeColumns += `'${keys[num]}', `;
+    realFormItem += `${keys[num]}: '', `;
+    dispatchItem += `dispatch({ type: 'SET_INPUT', name: '${keys[num]}', value: data['${keys[num]}'] })`;
+    dispatchItem += `\n\t\t\t\t`;
   }
   // console.log(formItem)
 
-  const updateForm =  `
+  const updateForm = `
     <Form
       initialValues={{${initialValues}}}
     >
@@ -43,30 +41,33 @@ const makeUpdateForm = (name, form) => {
         </Button>
       </Form.Item>
     </Form>
-  `
-  const realForm = `{ ${realFormItem}}`
-  console.log( initialValues)
+  `;
+  const realForm = `{ ${realFormItem}}`;
+  console.log(initialValues);
   // console.log(`Real Form : ${realForm}`)
   // console.log(`Real Form : ${realForm}`)
 
-  return [updateForm, realForm, initialValues, dispatchItem, changeColumns ]
-}
+  return [updateForm, realForm, initialValues, dispatchItem, changeColumns];
+};
 
 exports.makeUpdateComponent = (name) => {
+  const schemaPath = path.join(process.cwd(), "./src/schema.js");
+  const schema = require(schemaPath);
+
   let columnData = schema[name];
-  let tempForm = {}
+  let tempForm = {};
   for (let i = 0; i < columnData.length; i++) {
     if (
       // eslint-disable-next-line no-mixed-operators
       columnData[i]["type"] !== "ID"
     ) {
-      tempForm[columnData[i].name] = '';
+      tempForm[columnData[i].name] = "";
     }
   }
-  const [updateform, realForm, initialValues, dispatchItem, changeColumns] = makeUpdateForm(name, tempForm)
+  const [updateform, realForm, initialValues, dispatchItem, changeColumns] =
+    makeUpdateForm(name, tempForm);
 
-  let fileContext =
-    `import React, { useEffect, useReducer } from 'react'
+  let fileContext = `import React, { useEffect, useReducer } from 'react'
 import { DatePicker, InputNumber, Form, Input, Button, Checkbox } from 'antd'
 import 'antd/dist/antd.css'
 import ${name} from '../../classes/${name}'
@@ -245,6 +246,6 @@ function ${name}Update({ id }) {
 }
 
 export default ${name}Update
-    `
-    return fileContext
-}
+    `;
+  return fileContext;
+};

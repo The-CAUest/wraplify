@@ -2,6 +2,8 @@
 
 const { init } = require("../src/init");
 const { copyAuthCAC } = require("../src/copyAuthCAC");
+const parser = require("./src/parser");
+const buildDBComponents = require("./buildDBComponents/buildDBComponents");
 
 const command = process.argv[2];
 
@@ -12,7 +14,8 @@ if (command === "init") {
 } else if (command === "copyAuthCAC") {
   copyAuthCAC();
 } else if (command === "build") {
-  // buildDBComponents();
+  parser();
+  buildDBComponents();
 }
 
 console.log(process.argv[2]);

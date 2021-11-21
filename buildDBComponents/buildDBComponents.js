@@ -1,20 +1,18 @@
 const fs = require("fs");
 const path = require("path");
-const { getProjectInfo } = require("../src/loader");
-const projectInfo = getProjectInfo();
 const { makeCreateComponent } = require(`./preCreate`);
 const { makeReadComponent } = require(`./preRead`);
 const { makeUpdateComponent } = require(`./preUpdate`);
 const { makeDeleteComponent } = require(`./preDelete`);
 const { makeListComponent } = require(`./preList`);
 
-const schemaPath = path.join(process.cwd(), `./src/schema.js`);
-const schema = require(schemaPath);
-
 //생성시키는 code: process.cwd() + ./buildDBComponents/buildDBComponents.js
 //생성될 폴더: process.cwd() + ./components/crudl
 
 const schemaParser = () => {
+  const schemaPath = path.join(process.cwd(), `./src/schema.js`);
+  const schema = require(schemaPath);
+
   const objects = Object.keys(schema); // Stage, Note
   return objects;
 };
@@ -30,7 +28,7 @@ const writeFile = (fileContext, name, functionName) => {
   fs.writeFileSync(filePath, fileContext, "utf-8");
 };
 
-const start = () => {
+module.exports = () => {
   const filePath = path.join(process.cwd(), `./components/crudl`);
   if (filePath) {
     fs.rmdir(filePath, { recursive: true }, (err) => {
@@ -54,5 +52,3 @@ const start = () => {
     writeFile(makeListComponent(objects[idx]), objects[idx], "List");
   }
 };
-
-start();

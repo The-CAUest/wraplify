@@ -1,8 +1,9 @@
 const path = require("path");
-const schemaPath = path.join(process.cwd(), "./src/schema.js");
-let schema = require(schemaPath);
 
 function makeInitialValue(name) {
+  const schemaPath = path.join(process.cwd(), "./src/schema.js");
+  let schema = require(schemaPath);
+
   let tokens = schema[name];
   let ret = ``;
   for (let i = 0; i < tokens.length; i++) {
