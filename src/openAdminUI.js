@@ -74,7 +74,7 @@ const openAdminUIPage = async (browser, page) => {
 
     await newPage.waitForNavigation({ waitUntil: "networkidle2" });
 
-    sleep(3000);
+    await sleep(3000);
 
     await newPage.bringToFront();
 
