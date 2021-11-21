@@ -71,6 +71,10 @@ const openAdminUIPage = async (browser, page) => {
     );
 
     newPage = await target.page();
+    newPage.setViewport({
+      width: 1920,
+      height: 1080,
+    });
 
     await newPage.waitForNavigation({ waitUntil: "networkidle2" });
 
