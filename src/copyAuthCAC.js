@@ -6,7 +6,9 @@ module.exports = () => {
 
   console.log("=================== Copy Auth Class ===================");
   try {
-    fs.rmdirSync(path.join(process.cwd(), `src/classes/auth`));
+    fs.rmdirSync(path.join(process.cwd(), `src/classes/auth`), {
+      recursive: true,
+    });
     fs.mkdirSync(path.join(process.cwd(), `src/classes/auth`), {
       recursive: true,
     });
