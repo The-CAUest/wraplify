@@ -7,7 +7,10 @@ function makeInitialValue(name) {
   let tokens = schema[name];
   let ret = ``;
   for (let i = 0; i < tokens.length; i++) {
-    if (tokens[i]["type"] == "Boolean") {
+    if (tokens[i]["type"].startsWith("[") && tokens[i]["type"].endsWith("]")) {
+      //changed
+      ret += tokens[i]["name"] + ": [],";
+    } else if (tokens[i]["type"] == "Boolean") {
       ret += tokens[i]["name"] + ": false,";
     } else if (tokens[i]["type"] == "Int") {
       ret += tokens[i]["name"] + ": 0,";
@@ -27,9 +30,9 @@ exports.makeCreateComponent = (name) => {
   import { DatePicker, InputNumber, Form, Input, Button, Checkbox } from "antd";
   import "antd/dist/antd.css";
   import React, { useReducer } from "react";
-  import ${name} from "../../classes/${name}";
+  import ${name} from "../../../classes/${name}";
   
-  function ${name}Create({ inputColumn }) {
+  function ${name}Create({ onCreate, inputColumn, style = {} }) {
     const initialState = {
       lists: [],
       loading: true,
@@ -69,6 +72,11 @@ exports.makeCreateComponent = (name) => {
       try {
         await ${name}.create${name}(data);
         console.log("succesfully created!");
+        if (onCreate) {
+          onCreate();
+        } else {
+          window.location.reload();
+        }
       } catch (err) {
         console.log("error:", err);
       }
@@ -81,13 +89,13 @@ exports.makeCreateComponent = (name) => {
     let data = schema["${name}"];
   
     return (
-      <div style={styles.container}>
+      <div style={{ ...styles.container, ...style }}>
         <Form onFinish={create${name}}>
           {inputColumn.map((column) => {
             for (let i = 0; i < data.length; i++) {
               if (data[i]["name"] == column && data[i]["mandatory"]) {
                 //필수
-                if (data[i]["type"] == "AWSDate") {
+                if (data[i]["type"] === "AWSDate") {
                   return (
                     <Form.Item
                       key={column}
@@ -112,7 +120,7 @@ exports.makeCreateComponent = (name) => {
                       />
                     </Form.Item>
                   );
-                } else if (data[i]["type"] == "AWSURL") {
+                } else if (data[i]["type"] === "AWSURL") {
                   return (
                     <Form.Item
                       key={column}
@@ -134,7 +142,7 @@ exports.makeCreateComponent = (name) => {
                       />
                     </Form.Item>
                   );
-                } else if (data[i]["type"] == "Int") {
+                } else if (data[i]["type"] === "Int") {
                   return (
                     <Form.Item
                       key={column}
@@ -206,7 +214,7 @@ exports.makeCreateComponent = (name) => {
                 }
               } else if (data[i]["name"] == column) {
                 //필수는 아닌애들
-                if (data[i]["type"] == "AWSDate") {
+                if (data[i]["type"] === "AWSDate") {
                   return (
                     <DatePicker
                       key={column}
@@ -221,7 +229,7 @@ exports.makeCreateComponent = (name) => {
                       }}
                     />
                   );
-                } else if (data[i]["type"] == "AWSURL") {
+                } else if (data[i]["type"] === "AWSURL") {
                   return (
                     <Input
                       defaultValue="https://"
@@ -232,7 +240,7 @@ exports.makeCreateComponent = (name) => {
                       name={column}
                     />
                   );
-                } else if (data[i]["type"] == "Int") {
+                } else if (data[i]["type"] === "Int") {
                   return (
                     <InputNumber
                     key={column} //map 쓸때 반환되는 애들은 무조건 key가 있어야 함
@@ -272,7 +280,6 @@ exports.makeCreateComponent = (name) => {
                   );
                 }
               } else {
-                console.log("There is no return Input tag");
               }
             }
           })}
@@ -282,7 +289,7 @@ exports.makeCreateComponent = (name) => {
             htmlType="submit"
             onClick={() => console.log("click")}
           >
-            Create ${name}
+            생성
           </Button>
         </Form>
       </div>
@@ -291,9 +298,6 @@ exports.makeCreateComponent = (name) => {
   
   const styles = {
     container: { padding: 20 },
-    input: { marginBottom: 10 },
-    item: { textAlign: "left" },
-    p: { color: "#1890ff" },
   };
   export default ${name}Create;
   `;
