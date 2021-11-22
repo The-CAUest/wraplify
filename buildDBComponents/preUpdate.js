@@ -77,7 +77,7 @@ const schema = require("../../../src/schema");
 
 function reducer (state, action) {
   switch (action.type) {
-    case 'SET_INPUT':S
+    case 'SET_INPUT':
       return { ...state, form: { ...state.form, [action.name]: action.value } }
     case 'SET_DATA':
       return { ...state, list: action.list, loading: false }
