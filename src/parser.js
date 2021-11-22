@@ -23,6 +23,10 @@ const schemaParser = (tokens) => {
         tableData.mandatory = true;
         dataToken[1] = dataToken[1].slice(0, -1);
       }
+      tableData.isConnection = false;
+      if (dataToken.length >= 3) {
+        tableData.isConnection = true;
+      }
       tableData.type = dataToken[1];
       output[tableName[1]].push(tableData);
     }

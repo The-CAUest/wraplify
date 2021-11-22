@@ -7,6 +7,9 @@ function makeInitialValue(name) {
   let tokens = schema[name];
   let ret = ``;
   for (let i = 0; i < tokens.length; i++) {
+    if (tokens[i]["isConnection"]) {
+      continue;
+    }
     if (tokens[i]["type"].startsWith("[") && tokens[i]["type"].endsWith("]")) {
       //changed
       ret += tokens[i]["name"] + ": [],";
@@ -30,9 +33,9 @@ exports.makeCreateComponent = (name) => {
   import { DatePicker, InputNumber, Form, Input, Button, Checkbox } from "antd";
   import "antd/dist/antd.css";
   import React, { useReducer } from "react";
-  import ${name} from "../../classes/${name}";
+  import ${name} from "../../crudl/classes/${name}";
   
-  function ${name}Create({ onCreate, inputColumn, style = {} }) {
+  function ${name}Create({ initialValue = {} ,onCreate, inputColumn, style = {} }) {
     const initialState = {
       lists: [],
       loading: true,
@@ -65,6 +68,7 @@ exports.makeCreateComponent = (name) => {
       const { form } = state;
       const data = {
         ...form,
+        ...initialValue,
         id: uuid(),
       };
       dispatch({ type: "ADD", data });
@@ -85,7 +89,7 @@ exports.makeCreateComponent = (name) => {
       dispatch({ type: "SET_INPUT", name: e.target.name, value: e.target.value });
     }
 
-    const schema = require("../../../src/schema.js");
+    const schema = require("../../src/schema.js");
     let data = schema["${name}"];
   
     return (
@@ -93,6 +97,9 @@ exports.makeCreateComponent = (name) => {
         <Form onFinish={create${name}}>
           {inputColumn.map((column) => {
             for (let i = 0; i < data.length; i++) {
+              if(data[i]["isConnection] == true){
+                continue;
+              }
               if (data[i]["name"] == column && data[i]["mandatory"]) {
                 //필수
                 if (data[i]["type"] === "AWSDate") {
