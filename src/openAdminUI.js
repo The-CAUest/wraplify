@@ -79,7 +79,11 @@ const openAdminUIPage = async (browser, page) => {
       height,
     });
 
-    await newPage.waitForNavigation({ waitUntil: "networkidle2" });
+    try {
+      await newPage.waitForNavigation({ waitUntil: "networkidle2" });
+    } catch {
+      continue;
+    }
 
     await sleep(3000);
 
