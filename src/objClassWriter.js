@@ -14,8 +14,8 @@ module.exports = () => {
 
   dbObjects.forEach((objName) => {
     const classContents = `import { API, graphqlOperation } from "aws-amplify";
-import { create${objName}, delete${objName}, update${objName} } from "../graphql/mutations";
-import { get${objName}, list${objName}s } from "../graphql/queries";
+import { create${objName}, delete${objName}, update${objName} } from "../../graphql/mutations";
+import { get${objName}, list${objName}s } from "../../graphql/queries";
 
 class ${objName} {
   static create${objName} = async (input) => {
