@@ -1,7 +1,7 @@
 exports.makeListComponent = (name) => {
   let fileContext = `import { Checkbox, List } from 'antd'
 import 'antd/dist/antd.css'
-import ${name} from '../../classes/${name}'
+import ${name} from '../../classes/crudl${name}'
 import { useEffect, useState } from 'react'
 
 function ${name}List({ filter, showList, style={} }) {

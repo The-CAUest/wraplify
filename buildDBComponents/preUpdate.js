@@ -66,7 +66,7 @@ exports.makeUpdateComponent = (name) => {
   let fileContext = `import React, { useEffect, useReducer } from 'react'
 import { DatePicker, InputNumber, Form, Input, Button, Checkbox, Space } from 'antd'
 import 'antd/dist/antd.css'
-import ${name} from '../../classes/${name}'
+import ${name} from '../../classes/crudl/${name}'
 import moment from 'moment'
 
 const schema = require("../../../src/schema");
