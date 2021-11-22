@@ -1,7 +1,7 @@
 exports.makeReadComponent = (name) => {
   let fileContext = `import { Card, Checkbox } from 'antd'
 import 'antd/dist/antd.css'
-import ${name} from '../../classes/${name}'
+import ${name} from '../../classes/crudl/${name}'
 import { useEffect, useState } from 'react'
 
 function ${name}Read({ id, title, showList, style={} }) {
