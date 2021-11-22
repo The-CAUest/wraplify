@@ -16,6 +16,9 @@ const projectAdminUIDataPage = () => {
   return `https://${projectInfo["amplifyRegion"]}.admin.amplifyapp.com/admin/${projectInfo["AmplifyAppId"]}/dev/datastore`;
 };
 
+const width = 1920;
+const height = 750;
+
 const activateAdminUI = async (page) => {
   console.log("Check Admin Ui is activated");
 
@@ -72,8 +75,8 @@ const openAdminUIPage = async (browser, page) => {
 
     newPage = await target.page();
     newPage.setViewport({
-      width: 1920,
-      height: 1080,
+      width,
+      height,
     });
 
     await newPage.waitForNavigation({ waitUntil: "networkidle2" });
@@ -111,12 +114,12 @@ const openDataEditPage = async (page) => {
 module.exports = async () => {
   const browser = await puppeteer.launch({
     headless: false,
-    args: ["--window-size=1920,1080"],
+    args: [`--window-size=${width},${height}`],
   });
   let page = await browser.newPage();
   page.setViewport({
-    width: 1920,
-    height: 1080,
+    width,
+    height,
   });
   await page.goto(projectAdminUIConsole());
 
