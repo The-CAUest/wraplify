@@ -89,7 +89,7 @@ exports.makeCreateComponent = (name) => {
       dispatch({ type: "SET_INPUT", name: e.target.name, value: e.target.value });
     }
 
-    const schema = require("../../src/schema.js");
+    const schema = require("../../../src/schema.js");
     let data = schema["${name}"];
   
     return (
