@@ -42,3 +42,9 @@ exports.writeGQLConfig = () => {
 `;
   fs.writeFileSync(configPath, configData);
 };
+
+exports.writeApiTransform = (data) => {
+  const projectInfo = getProjectInfo();
+  const filePath = `amplify/backend/api/${projectInfo.projectName}Api/transform.conf.json`;
+  fs.writeFileSync(filePath, data);
+};
