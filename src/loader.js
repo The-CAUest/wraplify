@@ -33,3 +33,10 @@ exports.getApiInfo = () => {
   const projectInfo = getYamlData("./.graphqlconfig.yml");
   console.log(projectInfo);
 };
+
+exports.getApiTransform = (projectName) => {
+  const data = getJsonData(
+    `amplify/backend/api/${projectName}Api/transform.conf.json`
+  );
+  return data;
+};

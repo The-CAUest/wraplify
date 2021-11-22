@@ -4,7 +4,7 @@ const path = require("path");
 module.exports = () => {
   // copy authentication class and components
 
-  console.log("=================== Start Copy Auth Class ===================");
+  console.log("=================== Copy Auth Class ===================");
   try {
     fs.mkdirSync(path.join(process.cwd(), `src/classes`), { recursive: true });
   } catch (e) {}
@@ -17,9 +17,7 @@ module.exports = () => {
 
   fs.copyFileSync(authClassPath, authClassTargetPath);
 
-  console.log("=================== End Copy Auth Class ===================\n");
-
-  console.log("=================== Start Copy Auth Common ===================");
+  console.log("=================== Copy Auth Common ===================");
   try {
     fs.mkdirSync(path.join(process.cwd(), `src/common`), { recursive: true });
   } catch (e) {}
@@ -29,11 +27,7 @@ module.exports = () => {
 
   fs.copyFileSync(authCommonPath, authCommonTargetPath);
 
-  console.log("=================== Ent Copy Auth Common ===================\n");
-
-  console.log(
-    "=================== Start Copy Auth Components ==================="
-  );
+  console.log("=================== Copy Auth Components ===================");
   try {
     fs.mkdirSync(path.join(process.cwd(), `src/components/auth`), {
       recursive: true,
@@ -60,8 +54,4 @@ module.exports = () => {
 
     fs.copyFileSync(componentPath, componentTargetPath);
   });
-
-  console.log(
-    "=================== End Copy Auth Components ===================\n"
-  );
 };

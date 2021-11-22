@@ -16,6 +16,9 @@ const projectAdminUIDataPage = () => {
   return `https://${projectInfo["amplifyRegion"]}.admin.amplifyapp.com/admin/${projectInfo["AmplifyAppId"]}/dev/datastore`;
 };
 
+const width = 1920;
+const height = 750;
+
 const activateAdminUI = async (page) => {
   console.log("Check Admin Ui is activated");
 
@@ -53,38 +56,39 @@ const activateAdminUI = async (page) => {
 const openAdminUIPage = async (browser, page) => {
   console.log("Open Admin UI Page");
 
-  await sleep(2500);
-
-  await page.goto(projectConsole(), { waitUntil: "networkidle2" });
-  await page.waitForSelector(".amplify-backend__placeholder button", {
-    waitUntil: "networkidle2",
-  });
-
-  await sleep(2500);
-
   await page.goto(projectConsole(), { waitUntil: "networkidle2" });
 
   await page.waitForSelector(".amplify-backend__placeholder button", {
     waitUntil: "networkidle2",
   });
 
-  const openAdminUIBtn = await page.$(".amplify-backend__placeholder button");
+  const cnt = 3;
+  let newPage;
+  for (let i = 0; i < cnt; i++) {
+    const openAdminUIBtn = await page.$(".amplify-backend__placeholder button");
 
-  await openAdminUIBtn.click();
+    await openAdminUIBtn.click();
 
-  const target = await new Promise((resolve) =>
-    browser.once("targetcreated", resolve)
-  );
+    const target = await new Promise((resolve) =>
+      browser.once("targetcreated", resolve)
+    );
 
-  const newPage = await target.page();
-  newPage.setViewport({
-    width: 1920,
-    height: 1080,
-  });
+    newPage = await target.page();
+    newPage.setViewport({
+      width,
+      height,
+    });
 
-  await newPage.waitForNavigation({ waitUntil: "networkidle2" });
+    await newPage.waitForNavigation({ waitUntil: "networkidle2" });
 
-  await newPage.bringToFront();
+    await sleep(3000);
+
+    await newPage.bringToFront();
+
+    if (i === cnt - 1) break;
+
+    await newPage.close();
+  }
 
   console.log("Goto Admin UI Page - Done");
 
@@ -110,12 +114,12 @@ const openDataEditPage = async (page) => {
 module.exports = async () => {
   const browser = await puppeteer.launch({
     headless: false,
-    args: ["--window-size=1920,1080"],
+    args: [`--window-size=${width},${height}`],
   });
   let page = await browser.newPage();
   page.setViewport({
-    width: 1920,
-    height: 1080,
+    width,
+    height,
   });
   await page.goto(projectAdminUIConsole());
 

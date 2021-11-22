@@ -4,6 +4,7 @@ const {
   writeHeadlessApi,
   writeGQLConfig,
 } = require("./writer");
+const disableConflict = require("./disableConflict");
 const deleteFile = require("./remover");
 
 module.exports = () => {
@@ -25,6 +26,7 @@ module.exports = () => {
   writeHeadlessApi();
   shell.exec(`${stdinCommand} headlessApi.json | amplify add api --headless`);
   deleteFile("headlessApi.json");
+  disableConflict();
   console.log("=================== end Api ===================\n");
 
   writeGQLConfig();

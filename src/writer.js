@@ -6,7 +6,7 @@ exports.writeHeadlessApi = () => {
   const projectInfo = getProjectInfo();
 
   const headlessApiPath = path.join(process.cwd(), "./headlessApi.json");
-  const headlessApiData = `{"version":1,"serviceConfiguration":{"serviceName":"AppSync","apiName":"${projectInfo.projectName}Api","transformSchema":"type Todo @model {\\r\\n  id: ID!\\r\\n  name: String!\\r\\n  description: String\\r\\n}","defaultAuthType":{"mode":"AMAZON_COGNITO_USER_POOLS"},"additionalAuthTypes":[{"mode":"API_KEY"}]}}`;
+  const headlessApiData = `{"version":1,"serviceConfiguration":{"serviceName":"AppSync","apiName":"${projectInfo.projectName}Api","transformSchema":"type Todo @model {\\r\\n  id: ID!\\r\\n  name: String!\\r\\n  description: String\\r\\n}","defaultAuthType":{"mode":"AMAZON_COGNITO_USER_POOLS"},"additionalAuthTypes":[{"mode":"API_KEY"}],"conflictResolution":{"defaultResolutionStrategy":{"type":"NONE"}}}}`;
   fs.writeFileSync(headlessApiPath, headlessApiData);
 };
 
@@ -41,4 +41,10 @@ exports.writeGQLConfig = () => {
         maxDepth: 2
 `;
   fs.writeFileSync(configPath, configData);
+};
+
+exports.writeApiTransform = (data) => {
+  const projectInfo = getProjectInfo();
+  const filePath = `amplify/backend/api/${projectInfo.projectName}Api/transform.conf.json`;
+  fs.writeFileSync(filePath, data);
 };
