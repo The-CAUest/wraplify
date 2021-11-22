@@ -4,7 +4,7 @@ import Text from "antd/lib/typography/Text";
 import WraplifyAuth from "../../classes/WraplifyAuth";
 import { AuthState, ForgotPasswordStep } from "../../common/auth";
 
-const ForgotPasswordForm = ({ setAuthState }) => {
+const ForgotPasswordForm = ({ onForgotPassword, setAuthState }) => {
   const formInit = {
     username: "",
     confirmationCode: "",
@@ -52,9 +52,13 @@ const ForgotPasswordForm = ({ setAuthState }) => {
         confirmationCode,
         newPassword
       );
-      alert(
-        "비밀번호 재설정에 성공했습니다. 해당 비밀번호로 로그인하시면 서비스를 이용하실 수 있습니다."
-      );
+      if (onForgotPassword) {
+        onForgotPassword();
+      } else {
+        alert(
+          "비밀번호 재설정에 성공했습니다. 해당 비밀번호로 로그인하시면 서비스를 이용하실 수 있습니다."
+        );
+      }
       setAuthState(AuthState.SignIn);
     } catch (error) {
       if (error.name === "CodeMismatchException") {

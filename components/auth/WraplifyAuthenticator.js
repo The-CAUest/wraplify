@@ -6,7 +6,10 @@ import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
 const WraplifyAuthenticator = ({
+  onSignUp,
+  onConfirmSignUp,
   onLogin,
+  onForgotPassword,
   initialState = AuthState.SignIn,
 }) => {
   const [authData, setAuthData] = useState({ username: "" });
@@ -20,6 +23,7 @@ const WraplifyAuthenticator = ({
           case AuthState.SignUp:
             return (
               <SignUpForm
+                onSignUp={onSignUp}
                 setAuthState={setAuthState}
                 setAuthData={setAuthData}
               />
@@ -27,6 +31,7 @@ const WraplifyAuthenticator = ({
           case AuthState.ConfirmSignUp:
             return (
               <ConfirmSignUpForm
+                onConfirmSignUp={onConfirmSignUp}
                 setAuthState={setAuthState}
                 authData={authData}
               />
@@ -40,7 +45,12 @@ const WraplifyAuthenticator = ({
               />
             );
           case AuthState.ForgotPassword:
-            return <ForgotPasswordForm setAuthState={setAuthState} />;
+            return (
+              <ForgotPasswordForm
+                onForgotPassword={onForgotPassword}
+                setAuthState={setAuthState}
+              />
+            );
           default:
             <LoginForm
               onLogin={onLogin}

@@ -4,7 +4,7 @@ import WraplifyAuth from "../../classes/WraplifyAuth";
 import Text from "antd/lib/typography/Text";
 import { AuthState } from "../../common/auth";
 
-const ConfirmSignUpForm = ({ setAuthState, authData }) => {
+const ConfirmSignUpForm = ({ onConfirmSignUp, setAuthState, authData }) => {
   const { username } = authData;
 
   if (!username) setAuthState(AuthState.SignIn);
@@ -22,7 +22,11 @@ const ConfirmSignUpForm = ({ setAuthState, authData }) => {
   const confirmSignUp = async () => {
     try {
       await WraplifyAuth.confirmSignUp(username, form.confirmationCode);
-      alert("인증에 성공했습니다. 로그인 후 서비스 이용 부탁드립니다.");
+      if (onConfirmSignUp) {
+        onConfirmSignUp();
+      } else {
+        alert("인증에 성공했습니다. 로그인 후 서비스 이용 부탁드립니다.");
+      }
       setAuthState(AuthState.SignIn);
     } catch (error) {
       if (error.name === "CodeMismatchException") {

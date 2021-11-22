@@ -6,7 +6,7 @@ import "antd/dist/antd.css";
 import { AuthState } from "../../common/auth";
 import WraplifyAuth from "../../classes/WraplifyAuth";
 
-const SignUpForm = ({ setAuthState, setAuthData }) => {
+const SignUpForm = ({ onSignUp, setAuthState, setAuthData }) => {
   const formInit = {
     username: "",
     password: "",
@@ -38,6 +38,9 @@ const SignUpForm = ({ setAuthState, setAuthData }) => {
         email,
         phoneNumber
       );
+      if (onSignUp) {
+        onSignUp();
+      }
       setAuthData({ username: user.username });
       setAuthState(AuthState.ConfirmSignUp);
     } catch (error) {
