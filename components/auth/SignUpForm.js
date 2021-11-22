@@ -4,7 +4,7 @@ import { Card, Form, Input, Button } from "antd";
 import Text from "antd/lib/typography/Text";
 import "antd/dist/antd.css";
 import { AuthState } from "../../common/auth";
-import WraplifyAuth from "../../classes/WraplifyAuth";
+import WraplifyAuth from "../../classes/auth/WraplifyAuth";
 
 const SignUpForm = ({ onSignUp, setAuthState, setAuthData }) => {
   const formInit = {

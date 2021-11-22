@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Card, Form, Input, Button } from "antd";
 import Text from "antd/lib/typography/Text";
 import "antd/dist/antd.css";
-import WraplifyAuth from "../../classes/WraplifyAuth";
+import WraplifyAuth from "../../classes/auth/WraplifyAuth";
 import { AuthState } from "../../common/auth";
 
 const LoginForm = ({ onLogin, setAuthState, setAuthData }) => {

@@ -6,10 +6,13 @@ module.exports = () => {
 
   console.log("=================== Copy Auth Class ===================");
   try {
-    fs.mkdirSync(path.join(process.cwd(), `src/classes`), { recursive: true });
+    fs.rmdirSync(path.join(process.cwd(), `src/classes/auth`));
+    fs.mkdirSync(path.join(process.cwd(), `src/classes/auth`), {
+      recursive: true,
+    });
   } catch (e) {}
 
-  const authClassPath = path.join(__dirname, "../classes/WraplifyAuth.js");
+  const authClassPath = path.join(__dirname, "../classes/auth/WraplifyAuth.js");
   const authClassTargetPath = path.join(
     process.cwd(),
     "src/classes/WraplifyAuth.js"
