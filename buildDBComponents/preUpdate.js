@@ -73,7 +73,7 @@ import 'antd/dist/antd.css'
 import ${name} from '../../classes/${name}'
 import moment from 'moment'
 
-const schema = require("../../src/schema");
+const schema = require("../../../src/schema");
 
 function reducer (state, action) {
   switch (action.type) {
