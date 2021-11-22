@@ -2,7 +2,7 @@ exports.makeDeleteComponent = (name) => {
   let ret = `import { Button } from "antd";
   import "antd/dist/antd.css";
   import React, { useReducer, useEffect } from "react";
-  import ${name} from "../../classes/${name}";
+  import ${name} from "../../classes/crudl/${name}";
   
   const initialState = {
     lists: [],

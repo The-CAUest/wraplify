@@ -33,7 +33,7 @@ exports.makeCreateComponent = (name) => {
   import { DatePicker, InputNumber, Form, Input, Button, Checkbox } from "antd";
   import "antd/dist/antd.css";
   import React, { useReducer } from "react";
-  import ${name} from "../../crudl/classes/${name}";
+  import ${name} from "../../classes/crudl/${name}";
   
   function ${name}Create({ initialValue = {} ,onCreate, inputColumn, style = {} }) {
     const initialState = {
