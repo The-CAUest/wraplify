@@ -26,7 +26,6 @@ const makeUpdateForm = (name, form) => {
     dispatchItem += `dispatch({ type: 'SET_INPUT', name: '${keys[num]}', value: data['${keys[num]}'] })`;
     dispatchItem += `\n\t\t\t\t`;
   }
-  // console.log(formItem)
 
   const updateForm = `
     <Form
@@ -43,9 +42,6 @@ const makeUpdateForm = (name, form) => {
     </Form>
   `;
   const realForm = `{ ${realFormItem}}`;
-  console.log(initialValues);
-  // console.log(`Real Form : ${realForm}`)
-  // console.log(`Real Form : ${realForm}`)
 
   return [updateForm, realForm, initialValues, dispatchItem, changeColumns];
 };
