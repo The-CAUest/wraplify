@@ -10,6 +10,7 @@ const WraplifyAuthenticator = ({
   onConfirmSignUp,
   onLogin,
   onForgotPassword,
+  style = {},
   initialState = AuthState.SignIn,
 }) => {
   const [authData, setAuthData] = useState({ username: "" });
@@ -66,7 +67,7 @@ const WraplifyAuthenticator = ({
     handleAuthStateChange();
   }, [onLogin, authState, authData]);
 
-  return <div style={{ width: 350 }}>{authComponent}</div>;
+  return <div style={{ width: 350, ...style }}>{authComponent}</div>;
 };
 
 export default WraplifyAuthenticator;
