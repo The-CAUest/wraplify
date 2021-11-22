@@ -7,7 +7,7 @@ function makeInitialValue(name) {
   let tokens = schema[name];
   let ret = ``;
   for (let i = 0; i < tokens.length; i++) {
-    if (tokens[i]["isConnection"]) {
+    if (tokens[i]["isConnection"] == true) {
       continue;
     }
     if (tokens[i]["type"].startsWith("[") && tokens[i]["type"].endsWith("]")) {
@@ -97,7 +97,7 @@ exports.makeCreateComponent = (name) => {
         <Form onFinish={create${name}}>
           {inputColumn.map((column) => {
             for (let i = 0; i < data.length; i++) {
-              if(data[i]["isConnection] == true){
+              if(data[i]["isConnection"] == true){
                 continue;
               }
               if (data[i]["name"] == column && data[i]["mandatory"]) {
