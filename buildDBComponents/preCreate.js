@@ -30,7 +30,7 @@ exports.makeCreateComponent = (name) => {
   import { DatePicker, InputNumber, Form, Input, Button, Checkbox } from "antd";
   import "antd/dist/antd.css";
   import React, { useReducer } from "react";
-  import ${name} from "../../../classes/${name}";
+  import ${name} from "../../classes/${name}";
   
   function ${name}Create({ onCreate, inputColumn, style = {} }) {
     const initialState = {
@@ -85,7 +85,7 @@ exports.makeCreateComponent = (name) => {
       dispatch({ type: "SET_INPUT", name: e.target.name, value: e.target.value });
     }
 
-    const schema = require("../../src/schema.js");
+    const schema = require("../../../src/schema.js");
     let data = schema["${name}"];
   
     return (
