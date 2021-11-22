@@ -15,7 +15,7 @@ module.exports = () => {
   const authClassPath = path.join(__dirname, "../classes/auth/WraplifyAuth.js");
   const authClassTargetPath = path.join(
     process.cwd(),
-    "src/classes/WraplifyAuth.js"
+    "src/classes/auth/WraplifyAuth.js"
   );
 
   fs.copyFileSync(authClassPath, authClassTargetPath);
