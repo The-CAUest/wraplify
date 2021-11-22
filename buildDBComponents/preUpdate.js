@@ -53,6 +53,9 @@ exports.makeUpdateComponent = (name) => {
   let columnData = schema[name];
   let tempForm = {};
   for (let i = 0; i < columnData.length; i++) {
+    if (columnData[i]["isConnection"]) {
+      continue;
+    }
     if (
       // eslint-disable-next-line no-mixed-operators
       columnData[i]["type"] !== "ID"
