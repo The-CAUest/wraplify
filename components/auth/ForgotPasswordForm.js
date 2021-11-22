@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, Form, Input, Button } from "antd";
 import Text from "antd/lib/typography/Text";
-import WraplifyAuth from "../../classes/WraplifyAuth";
+import WraplifyAuth from "../../classes/auth/WraplifyAuth";
 import { AuthState, ForgotPasswordStep } from "../../common/auth";
 
 const ForgotPasswordForm = ({ onForgotPassword, setAuthState }) => {

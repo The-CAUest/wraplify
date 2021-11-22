@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Form, Input, Button } from "antd";
-import WraplifyAuth from "../../classes/WraplifyAuth";
+import WraplifyAuth from "../../classes/auth/WraplifyAuth";
 import Text from "antd/lib/typography/Text";
 import { AuthState } from "../../common/auth";
 

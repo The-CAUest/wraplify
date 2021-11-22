@@ -2,9 +2,10 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = () => {
-  const classesPath = path.join(process.cwd(), `./src/classes`);
+  const classesPath = path.join(process.cwd(), `./src/classes/crudl`);
 
   try {
+    fs.rmdirSync(classesPath, { recursive: true });
     fs.mkdirSync(classesPath, { recursive: true });
   } catch (e) {}
 
