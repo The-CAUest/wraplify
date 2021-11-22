@@ -6,7 +6,7 @@ exports.writeHeadlessApi = () => {
   const projectInfo = getProjectInfo();
 
   const headlessApiPath = path.join(process.cwd(), "./headlessApi.json");
-  const headlessApiData = `{"version":1,"serviceConfiguration":{"serviceName":"AppSync","apiName":"${projectInfo.projectName}Api","transformSchema":"type Todo @model {\\r\\n  id: ID!\\r\\n  name: String!\\r\\n  description: String\\r\\n}","defaultAuthType":{"mode":"AMAZON_COGNITO_USER_POOLS"},"additionalAuthTypes":[{"mode":"API_KEY"}],"conflictResolution": {"defaultResolutionStrategy":{"type":"NONE"}}}}`;
+  const headlessApiData = `{"version":1,"serviceConfiguration":{"serviceName":"AppSync","apiName":"${projectInfo.projectName}Api","transformSchema":"type Todo @model {\\r\\n  id: ID!\\r\\n  name: String!\\r\\n  description: String\\r\\n}","defaultAuthType":{"mode":"AMAZON_COGNITO_USER_POOLS"},"additionalAuthTypes":[{"mode":"API_KEY"}],"conflictResolution":{"defaultResolutionStrategy":{"type":"NONE"}}}}`;
   fs.writeFileSync(headlessApiPath, headlessApiData);
 };
 
