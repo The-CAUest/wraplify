@@ -4,7 +4,7 @@ import 'antd/dist/antd.css'
 import ${name} from '../../classes/${name}'
 import { useEffect, useState } from 'react'
 
-function ${name}Read({ id, title, showList }) {
+function ${name}Read({ id, title, showList, style={} }) {
   const [data, setData] = useState({})
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function ${name}Read({ id, title, showList }) {
   return(
       <div
         className="App"
-        style={{ display:'flex', justifyContent: 'center', marginTop:50}}
+        style={{ display:'flex', justifyContent: 'center', marginTop:50, ...style}}
       >
         <Card 
           style={{marginTop :16, width: 300, textAlign: 'center'}}
@@ -34,6 +34,6 @@ function ${name}Read({ id, title, showList }) {
 }
 
 export default ${name}Read
-  `
-  return fileContext
-}
+  `;
+  return fileContext;
+};

@@ -4,7 +4,7 @@ import 'antd/dist/antd.css'
 import ${name} from '../../classes/${name}'
 import { useEffect, useState } from 'react'
 
-function ${name}List({ filter, showList }) {
+function ${name}List({ filter, showList, style={} }) {
   const [filteredData, setFilteredData] = useState([])
   
   useEffect(() => {
@@ -29,7 +29,7 @@ function ${name}List({ filter, showList }) {
   return (
     <div
        className="App"
-       style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}
+       style={{ display: 'flex', justifyContent: 'center', marginTop: 50, ...style }}
      >
         <List
           style={{ marginTop: 16, width:700 }}
@@ -43,7 +43,7 @@ function ${name}List({ filter, showList }) {
                 if (typeof (item[elem]) === 'boolean') {
                   return <Checkbox defaultChecked={item[elem]} disabled>{elem}</Checkbox>
                 }
-                return <p>{item[elem].toString()}</p>
+                return <p>{item[elem]}</p>
               })}
             </List.Item>
           )}
@@ -53,6 +53,6 @@ function ${name}List({ filter, showList }) {
 }
 
 export default ${name}List
-  `
-  return fileContext
-}
+  `;
+  return fileContext;
+};

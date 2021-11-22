@@ -64,12 +64,12 @@ exports.makeUpdateComponent = (name) => {
     makeUpdateForm(name, tempForm);
 
   let fileContext = `import React, { useEffect, useReducer } from 'react'
-import { DatePicker, InputNumber, Form, Input, Button, Checkbox } from 'antd'
+import { DatePicker, InputNumber, Form, Input, Button, Checkbox, Space } from 'antd'
 import 'antd/dist/antd.css'
 import ${name} from '../../classes/${name}'
 import moment from 'moment'
 
-const schema = require("../../src/schema");
+const schema = require("../../../src/schema");
 
 function reducer (state, action) {
   switch (action.type) {
@@ -91,7 +91,7 @@ const initialState = {
   form: ${realForm}
 }
     
-function ${name}Update({ id }) {
+function ${name}Update({ id, onUpdate, style={} }) {
   const [state, dispatch] = useReducer(reducer, initialState)
   const changeColumns = [${changeColumns}]
   const data = schema['${name}']
@@ -115,13 +115,19 @@ function ${name}Update({ id }) {
   }
   
   async function update${name} () {
+    const list = state.list
+    dispatch({ type: 'SET_DATA', list })
     try {
       await ${name}.update${name}({ id, ...state.form })
       console.log('successfully updated note!')
+      if(onUpdate) {
+        onUpdate();
+      } else {
+        window.location.reload();
+      }
     } catch (err) {
       console.log('update error : ', err)
     }
-    dispatch({ type: 'SET_DATA', ...state.list })
   }
   
   function onChange (e) {
@@ -131,10 +137,11 @@ function ${name}Update({ id }) {
   return (
     <div
       className="App"
-      style={{ display:'flex', justifyContent: 'center', marginTop:50}}
+      style={{ display:'flex', justifyContent: 'center', marginTop:50, ...style}}
     >
       <Form
         initialValues={{${initialValues}}}
+        onFinish={update${name}}
       >
         {changeColumns.map(column => {
           for(let i = 0; i < data.length; i++) {
@@ -232,8 +239,8 @@ function ${name}Update({ id }) {
         <Form.Item
           wrapperCol={{ offset: 8, span: 16, }}
         >
-          <Button type="primary" htmlType="submit" onClick={() => updateNote()}>
-            Update
+          <Button type="primary" htmlType="submit">
+            수정
           </Button>
         </Form.Item>
       </Form>
