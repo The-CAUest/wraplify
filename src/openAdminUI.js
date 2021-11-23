@@ -17,7 +17,7 @@ const projectAdminUIDataPage = () => {
 };
 
 const width = 1920;
-const height = 750;
+const height = 800;
 
 const activateAdminUI = async (page) => {
   console.log("Check Admin Ui is activated");
