@@ -7,6 +7,7 @@ const buildDBComponents = require("../buildDBComponents/buildDBComponents");
 const openAdminUI = require("../src/openAdminUI");
 const pullAndCodegen = require("../src/pullAndCodegen");
 const writeObjClasses = require("../src/objClassWriter");
+const disableConflict = require("../src/disableConflict");
 
 const command = process.argv[2];
 
@@ -16,6 +17,7 @@ const command = process.argv[2];
     copyAuthCAC();
     await openAdminUI();
     pullAndCodegen();
+    disableConflict();
     parser();
     writeObjClasses();
     buildDBComponents();
@@ -31,6 +33,7 @@ const command = process.argv[2];
     await openAdminUI();
   } else if (command === "rebuild") {
     pullAndCodegen();
+    disableConflict();
     parser();
     writeObjClasses();
     buildDBComponents();
