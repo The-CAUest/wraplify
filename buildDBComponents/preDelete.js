@@ -51,7 +51,7 @@ exports.makeDeleteComponent = (name) => {
     }
   
     return (
-      <div style={...style}>
+      <div style={style}>
         <Button onClick={() => delete${name}()}>Delete ${name}</Button>
       </div>
     );
