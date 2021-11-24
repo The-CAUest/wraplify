@@ -24,7 +24,7 @@ function ${name}Read({ id, title, showList, style={} }) {
           title={data[title]}>
           {showList.map(function (elem) {
             if (typeof (data[elem]) === 'boolean') {
-              return <Checkbox style={{marginBottom:15}} defaultChecked={data[elem]}>{elem}</Checkbox>
+              return <Checkbox style={{marginBottom:15}} defaultChecked={data[elem]} disabled>{elem}</Checkbox>
             }
             return <p>{data[elem]}</p>
           })}
