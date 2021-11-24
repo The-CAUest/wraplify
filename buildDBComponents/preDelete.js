@@ -20,7 +20,7 @@ exports.makeDeleteComponent = (name) => {
     }
   }
   
-  function ${name}Delete({ id }) {
+  function ${name}Delete({ id ,onDelete, style = {}}) {
     const [state, dispatch] = useReducer(reducer, initialState);
     useEffect(() => {
       fetch${name}();
@@ -40,13 +40,18 @@ exports.makeDeleteComponent = (name) => {
     async function delete${name}() {
       try {
         await ${name}.delete${name}(id);
+        if (onDelete) {
+          onDelete();
+        } else {
+          window.location.reload();
+        }
       } catch (err) {
         console.log({ err });
       }
     }
   
     return (
-      <div>
+      <div style={style}>
         <Button onClick={() => delete${name}()}>Delete ${name}</Button>
       </div>
     );
