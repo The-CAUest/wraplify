@@ -304,7 +304,7 @@ exports.makeCreateComponent = (name) => {
   }
   
   const styles = {
-    container: { padding: 20 },
+    container: { display: 'flex', justifyContent: 'center', padding: 20 },
   };
   export default ${name}Create;
   `;
