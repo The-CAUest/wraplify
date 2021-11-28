@@ -40,12 +40,12 @@ class ${objName} {
     return data?.delete${objName};
   };
 
-  static list${objName} = async () => {
+  static list${objName} = async (filter) => {
     const {
       data: {
         list${objName}s: { items },
       },
-    } = await API.graphql(graphqlOperation(list${objName}s));
+    } = await API.graphql(graphqlOperation(list${objName}s, { filter }));
     return items;
   };
 }
