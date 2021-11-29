@@ -27,18 +27,12 @@ function ${name}List({ filter, showList, style={} }) {
   if (!filteredData) return null
   
   return (
-    <div
-       className="App"
-       style={{ display: 'flex', justifyContent: 'center', marginTop: 50, ...style }}
-     >
+    <div style={style}>
         <List
-          style={{ marginTop: 16, width:700 }}
           bordered
           dataSource={filteredData}
           renderItem={item => (
-            <List.Item
-              style={{textAlign: 'center'}}
-            >
+            <List.Item>
               {showList.map(function (elem) {
                 if (typeof (item[elem]) === 'boolean') {
                   return <Checkbox defaultChecked={item[elem]} disabled>{elem}</Checkbox>

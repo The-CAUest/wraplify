@@ -14,12 +14,8 @@ function ${name}Read({ id, title, showList, style={} }) {
   if (!data) return null
   
   return(
-      <div
-        className="App"
-        style={{ display:'flex', justifyContent: 'center', marginTop:50, ...style}}
-      >
-        <Card 
-          style={{marginTop :16, width: 300, textAlign: 'center'}}
+      <div style={style}>
+        <Card
           type="inner"
           title={data[title]}>
           {showList.map(function (elem) {
