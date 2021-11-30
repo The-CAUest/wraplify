@@ -8,7 +8,7 @@ function ${name}List({ filter, showList, style={} }) {
   const [data, setData] = useState([])
   
   useEffect(() => {
-    ${name}.list${name}().then(data => {
+    ${name}.list${name}(filter).then(data => {
       setData(data)
     })
   }, [])
