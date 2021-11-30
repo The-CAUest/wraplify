@@ -1,8 +1,42 @@
+const path = require("path");
+
+const ReadComp = (isImg) => {
+  let ReadItemForm = "";
+  if (isImg) {
+    ReadItemForm = `<Card
+          cover={ <img src={data['img_imgUrl']} alt='logo' /> }
+          title={data[title]}
+        >`;
+  } else {
+    ReadItemForm = `<Card title={data[title]}>`;
+  }
+  return ReadItemForm;
+};
+
 exports.makeReadComponent = (name) => {
+  const schemaPath = path.join(process.cwd(), "./src/schema.js");
+  const schema = require(schemaPath);
+
+  let columnData = schema[name];
+  let ReadForm = "";
+  let flag = false;
+
+  for (let i = 0; i < columnData.length; i++) {
+    if (columnData[i]["name"].startsWith("img_")) {
+      flag = true;
+    }
+  }
+
+  if (flag) {
+    ReadForm = ReadComp(true);
+  } else {
+    ReadForm = ReadComp(false);
+  }
+
   let fileContext = `import { Card, Checkbox } from 'antd'
 import 'antd/dist/antd.css'
 import ${name} from '../../classes/crudl/${name}'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function ${name}Read({ id, title, showList, style={} }) {
   const [data, setData] = useState({})
@@ -14,18 +48,12 @@ function ${name}Read({ id, title, showList, style={} }) {
   if (!data) return null
   
   return(
-      <div
-        className="App"
-        style={{ display:'flex', justifyContent: 'center', marginTop:50, ...style}}
-      >
-        <Card 
-          style={{marginTop :16, width: 300, textAlign: 'center'}}
-          type="inner"
-          title={data[title]}>
+      <div style={style}>
+        ${ReadForm}
           {showList.map(function (elem) {
             if (typeof (data[elem]) === 'boolean') {
               return <Checkbox style={{marginBottom:15}} defaultChecked={data[elem]} disabled>{elem}</Checkbox>
-            }
+            } else if (elem.startsWith('img_')) {return}
             return <p>{data[elem]}</p>
           })}
         </Card>

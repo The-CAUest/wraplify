@@ -20,13 +20,18 @@ exports.makeListComponent = (name) => {
 
   let columnData = schema[name];
   let ListForm = "";
+  let flag = false;
 
   for (let i = 0; i < columnData.length; i++) {
     if (columnData[i]["name"].startsWith("img_")) {
-      ListForm = ListComp(true);
-    } else {
-      ListForm = ListComp(false);
+      flag = true;
     }
+  }
+
+  if (flag) {
+    ListForm = ListComp(true);
+  } else {
+    ListForm = ListComp(false);
   }
 
   let fileContext = `import { Checkbox, List } from 'antd'
