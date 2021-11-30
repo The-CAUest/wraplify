@@ -1,8 +1,38 @@
+const path = require("path");
+
+const ListComp = (isImg) => {
+  let ListItemForm = "";
+  if (isImg) {
+    ListItemForm = `<List.Item
+              extra={
+                <img src={item['img_imgUrl']} alt='logo' />
+              }
+            >`;
+  } else {
+    ListItemForm = `<List.Item/>`;
+  }
+  return ListItemForm;
+};
+
 exports.makeListComponent = (name) => {
+  const schemaPath = path.join(process.cwd(), "./src/schema.js");
+  const schema = require(schemaPath);
+
+  let columnData = schema[name];
+  let ListForm = "";
+
+  for (let i = 0; i < columnData.length; i++) {
+    if (columnData[i]["name"].startsWith("img_")) {
+      ListForm = ListComp(true);
+    } else {
+      ListForm = ListComp(false);
+    }
+  }
+
   let fileContext = `import { Checkbox, List } from 'antd'
 import 'antd/dist/antd.css'
 import ${name} from '../../classes/crudl/${name}'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function ${name}List({ filter, showList, style={} }) {
   const [data, setData] = useState([])
@@ -21,11 +51,11 @@ function ${name}List({ filter, showList, style={} }) {
           bordered
           dataSource={data}
           renderItem={item => (
-            <List.Item>
+            ${ListForm}
               {showList.map(function (elem) {
                 if (typeof (item[elem]) === 'boolean') {
                   return <Checkbox defaultChecked={item[elem]} disabled>{elem}</Checkbox>
-                }
+                } else if (elem.startsWith('img_')) { return }
                 return <p>{item[elem]}</p>
               })}
             </List.Item>
