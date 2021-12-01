@@ -2,7 +2,7 @@ exports.makeListComponent = (name) => {
   let fileContext = `import { Checkbox, List } from 'antd'
 import 'antd/dist/antd.css'
 import ${name} from '../../classes/crudl/${name}'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function ${name}List({ filter, showList, style={} }) {
   const [data, setData] = useState([])
@@ -25,7 +25,9 @@ function ${name}List({ filter, showList, style={} }) {
               {showList.map(function (elem) {
                 if (typeof (item[elem]) === 'boolean') {
                   return <Checkbox defaultChecked={item[elem]} disabled>{elem}</Checkbox>
-                }
+                } else if (elem.startsWith('img_')) { 
+                  return <img src={item[elem]} alt='logo' />
+                 }
                 return <p>{item[elem]}</p>
               })}
             </List.Item>
