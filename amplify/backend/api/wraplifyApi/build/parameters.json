@@ -1,8 +1,0 @@
-{
-    "CreateAPIKey": 1,
-    "AppSyncApiName": "wraplify",
-    "DynamoDBBillingMode": "PAY_PER_REQUEST",
-    "DynamoDBEnableServerSideEncryption": false,
-    "S3DeploymentBucket": "amplify-wraplify-dev-151429-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/7ab93be7739cc2ecc5031255a10d76fae53953ce"
-}
