@@ -138,10 +138,7 @@ function ${name}Update({ id, onUpdate, style={} }) {
   }
   
   return (
-    <div
-      className="App"
-      style={{ display:'flex', justifyContent: 'center', marginTop:50, ...style}}
-    >
+    <div style={style}>
       <Form
         initialValues={{${initialValues}}}
         onFinish={update${name}}
