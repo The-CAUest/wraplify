@@ -4,7 +4,7 @@ import 'antd/dist/antd.css'
 import ${name} from '../../classes/crudl/${name}'
 import React, { useEffect, useState } from 'react'
 
-function ${name}List({ filter, showList, style={} }) {
+function ${name}List({ filter, showList, onClick, style={} }) {
   const [data, setData] = useState([])
   
   useEffect(() => {
@@ -21,7 +21,7 @@ function ${name}List({ filter, showList, style={} }) {
           bordered
           dataSource={data}
           renderItem={item => (
-            <List.Item>
+            <List.Item onClick={onClick}>
               {showList.map(function (elem) {
                 if (typeof (item[elem]) === 'boolean') {
                   return <Checkbox defaultChecked={item[elem]} disabled>{elem}</Checkbox>
