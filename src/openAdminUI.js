@@ -129,7 +129,7 @@ module.exports = async () => {
   let page = await browser.newPage();
   page.setViewport({
     width,
-    height,
+    height: height - 100,
   });
   await page.goto(projectAdminUIConsole());
 
