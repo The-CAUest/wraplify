@@ -2,41 +2,32 @@ exports.makeListComponent = (name) => {
   let fileContext = `import { Checkbox, List } from 'antd'
 import 'antd/dist/antd.css'
 import ${name} from '../../classes/crudl/${name}'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-function ${name}List({ filter, showList, style={} }) {
-  const [filteredData, setFilteredData] = useState([])
+function ${name}List({ filter, showList, onClick, style={} }) {
+  const [data, setData] = useState([])
   
   useEffect(() => {
-    ${name}.list${name}().then(data => {
-      let pre_data = {}
-      if(!filter) {
-        pre_data = data
-      } else {
-        const filter_arr = Object.entries(filter)
-        filter_arr.forEach((condition) => {
-          const key = condition[0]
-          const value = condition[1]
-          pre_data = data.filter(elem => elem[key] === value)
-        })
-      }
-      setFilteredData(pre_data)
+    ${name}.list${name}(filter).then(data => {
+      setData(data)
     })
   }, [])
   
-  if (!filteredData) return null
+  if (!data) return null
   
   return (
     <div style={style}>
         <List
           bordered
-          dataSource={filteredData}
+          dataSource={data}
           renderItem={item => (
-            <List.Item>
+            <List.Item onClick={onClick}>
               {showList.map(function (elem) {
                 if (typeof (item[elem]) === 'boolean') {
                   return <Checkbox defaultChecked={item[elem]} disabled>{elem}</Checkbox>
-                }
+                } else if (elem.startsWith('img_')) { 
+                  return <img src={item[elem]} alt='logo' />
+                 }
                 return <p>{item[elem]}</p>
               })}
             </List.Item>
