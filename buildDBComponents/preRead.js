@@ -5,10 +5,11 @@ const ReadComp = (isImg) => {
   if (isImg) {
     ReadItemForm = `<Card
           cover={ <img src={data['img_imgUrl']} alt='logo' /> }
+          onClick={onClick ? () => onClick(data) : onClick}
           title={data[title]}
         >`;
   } else {
-    ReadItemForm = `<Card title={data[title]}>`;
+    ReadItemForm = `<Card title={data[title]} onClick={onClick ? () => onClick(data) : onClick}>`;
   }
   return ReadItemForm;
 };
@@ -38,7 +39,7 @@ import 'antd/dist/antd.css'
 import ${name} from '../../classes/crudl/${name}'
 import React, { useEffect, useState } from 'react'
 
-function ${name}Read({ id, title, showList, style={} }) {
+function ${name}Read({ id, title, showList, onClick, style={} }) {
   const [data, setData] = useState({})
 
   useEffect(() => {

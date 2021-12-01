@@ -21,7 +21,7 @@ function ${name}List({ filter, showList, onClick, style={} }) {
           bordered
           dataSource={data}
           renderItem={item => (
-            <List.Item onClick={onClick}>
+            <List.Item onClick={onClick ? () => onClick(item) : onClick}>
               {showList.map(function (elem) {
                 if (typeof (item[elem]) === 'boolean') {
                   return <Checkbox defaultChecked={item[elem]} disabled>{elem}</Checkbox>
