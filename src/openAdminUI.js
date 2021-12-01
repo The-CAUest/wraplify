@@ -106,7 +106,11 @@ const openDataEditPage = async (page) => {
 
   await page.goto(projectAdminUIDataPage(), { waitUntil: "networkidle2" });
 
-  await page.waitForNavigation({ waitUntil: "networkidle2" });
+  try {
+    await page.waitForNavigation({ waitUntil: "networkidle2" });
+  } catch {
+    await sleep(3000);
+  }
 
   console.log(
     " > ( Enable DataStore and deploy ) > Edit Data Model > Save And Deploy"
