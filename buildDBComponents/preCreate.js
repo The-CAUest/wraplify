@@ -93,7 +93,7 @@ exports.makeCreateComponent = (name) => {
     let data = schema["${name}"];
   
     return (
-      <div style={ ...style }>
+      <div style={ style }>
         <Form onFinish={create${name}}>
           {inputColumn.map((column) => {
             for (let i = 0; i < data.length; i++) {
