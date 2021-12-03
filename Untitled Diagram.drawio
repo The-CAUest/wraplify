@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-12-03T06:05:20.422Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="mE5WKwURcu5Dqg2txMWL" version="15.8.9" type="github">
+<mxfile host="app.diagrams.net" modified="2021-12-03T06:06:09.456Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="Bu7506oTai2TWPOHoeDL" version="15.8.9" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="981" dy="549" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1673" dy="936" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -113,34 +113,34 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="dJdg-9fTCSTlBK0RJ9ad-47" value="&lt;b&gt;중간에 DB Schema를 수정하고자 하는 경우&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="670" y="200" width="290" height="60" as="geometry" />
+          <mxGeometry x="856" y="140" width="384.5" height="90" as="geometry" />
         </mxCell>
         <mxCell id="dJdg-9fTCSTlBK0RJ9ad-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dJdg-9fTCSTlBK0RJ9ad-49" target="dJdg-9fTCSTlBK0RJ9ad-51">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="dJdg-9fTCSTlBK0RJ9ad-49" value="wraplify rebuild" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="827" y="480" width="140" height="60" as="geometry" />
+          <mxGeometry x="1080" y="299.97" width="140" height="60" as="geometry" />
         </mxCell>
         <mxCell id="dJdg-9fTCSTlBK0RJ9ad-50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dJdg-9fTCSTlBK0RJ9ad-51" target="dJdg-9fTCSTlBK0RJ9ad-53">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="dJdg-9fTCSTlBK0RJ9ad-51" value="amplify pull&lt;br&gt;amplify codegen" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="904.5" y="580" width="130" height="40" as="geometry" />
+          <mxGeometry x="1157.5" y="399.97" width="130" height="40" as="geometry" />
         </mxCell>
         <mxCell id="dJdg-9fTCSTlBK0RJ9ad-52" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dJdg-9fTCSTlBK0RJ9ad-53" target="dJdg-9fTCSTlBK0RJ9ad-55">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="dJdg-9fTCSTlBK0RJ9ad-53" value="사용자가 입력한 DB Schema 재가공" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="904.5" y="640" width="130" height="40" as="geometry" />
+          <mxGeometry x="1157.5" y="459.97" width="130" height="40" as="geometry" />
         </mxCell>
         <mxCell id="dJdg-9fTCSTlBK0RJ9ad-54" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dJdg-9fTCSTlBK0RJ9ad-55" target="dJdg-9fTCSTlBK0RJ9ad-56">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="dJdg-9fTCSTlBK0RJ9ad-55" value="가공한 DB 데이터 기반 테이블 별 Class 생성" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="903.25" y="700" width="132.5" height="50" as="geometry" />
+          <mxGeometry x="1156.25" y="519.97" width="132.5" height="50" as="geometry" />
         </mxCell>
         <mxCell id="dJdg-9fTCSTlBK0RJ9ad-56" value="가공한 DB 데이터 기반 테이블 별 CRUDL Component 생성" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="867" y="770" width="205" height="50" as="geometry" />
+          <mxGeometry x="1120" y="589.97" width="205" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
