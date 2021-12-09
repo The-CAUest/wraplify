@@ -28,7 +28,7 @@ exports.makeDeleteComponent = (name) => {
   
     async function fetch${name}() {
       try {
-        ${name}.list${name}(id).then((data) => {
+        ${name}.read${name}(id).then((data) => {
           dispatch({ type: "SET_DATA", list: data });
         });
       } catch (err) {
